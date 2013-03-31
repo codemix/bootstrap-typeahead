@@ -1,7 +1,7 @@
 function(){
   var jQuery = require('jquery');
   /* =============================================================
-   * bootstrap-typeahead.js v2.3.0
+   * bootstrap-typeahead.js v2.3.1
    * http://twitter.github.com/bootstrap/javascript.html#typeahead
    * =============================================================
    * Copyright 2012 Twitter, Inc.
