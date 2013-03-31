@@ -1,7 +1,7 @@
 function(){
   var jQuery = require('jquery');
   /* =============================================================
-   * bootstrap-typeahead.js v2.0.1
+   * bootstrap-typeahead.js v2.0.2
    * http://twitter.github.com/bootstrap/javascript.html#typeahead
    * =============================================================
    * Copyright 2012 Twitter, Inc.
@@ -42,6 +42,7 @@ function(){
     , select: function () {
         var val = this.$menu.find('.active').attr('data-value')
         this.$element.val(val)
+        this.$element.change();
         return this.hide()
       }
   
@@ -167,9 +168,6 @@ function(){
       }
   
     , keyup: function (e) {
-        e.stopPropagation()
-        e.preventDefault()
-  
         switch(e.keyCode) {
           case 40: // down arrow
           case 38: // up arrow
@@ -182,6 +180,7 @@ function(){
             break
   
           case 27: // escape
+            if (!this.shown) return
             this.hide()
             break
   
@@ -189,10 +188,11 @@ function(){
             this.lookup()
         }
   
+        e.stopPropagation()
+        e.preventDefault()
     }
   
     , keypress: function (e) {
-        e.stopPropagation()
         if (!this.shown) return
   
         switch(e.keyCode) {
@@ -212,12 +212,12 @@ function(){
             this.next()
             break
         }
+  
+        e.stopPropagation()
       }
   
     , blur: function (e) {
         var that = this
-        e.stopPropagation()
-        e.preventDefault()
         setTimeout(function () { that.hide() }, 150)
       }
   
